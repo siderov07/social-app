@@ -1,0 +1,109 @@
+.notifications-container {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .notifications-button {
+        color: var(--font-color-primary);
+        text-align: center;
+        line-height: 40px;
+        width: 40px;
+        cursor: pointer;
+        border-radius: 50%;
+
+        &:hover {
+            color: var(--primary-default);
+        }
+    }
+
+    .counter {
+        color: white;
+        position: absolute;
+        background-color:var(--primary-default);
+        right: 0;
+        top: 5px;
+        font-size: .8rem;
+        border-radius: 25%;
+        padding: 2px;
+    }
+}
+
+.notifications {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    color: var(--font-color-primary);
+    background-color: var(--background-light);
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 20;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    max-width: 300px;
+    width: 500px;
+
+    &__header {
+        padding-left: 10px;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        height: 400px;
+        padding: 0;
+        list-style: none;
+
+        .notification-item {
+            transition: .5s all;
+            display: flex;
+            height: 100px;
+            width: 100%;
+            cursor: default;
+
+            a {
+                color: var(--fonct-color-primary);
+                text-decoration: none;
+            }
+
+            &__avatar {
+                width: 40px;
+                height: 40px;
+                max-height: 100%;
+                box-sizing: border-box;
+                margin: 10px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+
+        .notification-item:hover {
+            background-color: var(--primary-default);
+            color: white;
+        }
+    }
+}
+
+.unread-notification {
+    background-color: var(--primary-default) !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .notifications {
+        max-width: 100vw;
+        width: calc(100vw - 70px);
+        position: fixed;
+        border-radius: 0;
+        right: 0;
+        box-sizing: border-box;
+        padding-left: 10px;
+        max-height: 300px;
+    }
+
+    .overlay {
+        left: 70px;
+    }
+}

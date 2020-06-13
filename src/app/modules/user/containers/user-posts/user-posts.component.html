@@ -1,0 +1,13 @@
+<ng-container *ngIf="currentUser">
+  
+  <app-user-header 
+    (createPostEvent)="addPost($event)"
+    (followUserEvent)="handleFollow($event)" [currentUser]="currentUser">
+  </app-user-header>
+
+  <div class="wrapper">
+    <app-post-card class="wrapper__item" *ngFor="let post of postsList" [post]="post"></app-post-card>
+  </div>
+  <ng-container *ngIf="infinityScroll$ | async"></ng-container>
+
+</ng-container>

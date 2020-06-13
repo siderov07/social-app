@@ -1,0 +1,117 @@
+.post {
+  width: 500px;
+  max-width: 100%;
+  background-color: var(--background-secondary);
+  display: flex;
+  flex-direction: column;
+  color: var(--font-color-primary);
+  padding-bottom: 10px;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  border: 2px solid var(--background-default);
+  box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.2);
+
+  &__header {
+    display: flex;
+    align-items: center;
+
+    .post-author {
+      margin-right: auto;
+      padding: 8px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      max-width: 100%;
+      
+      .author-name {
+        text-decoration: none;
+        color: var(--font-color-primary);
+      }
+
+      * {
+        cursor: pointer;
+      }
+    }
+
+    .post-actions {
+      float: right;
+      width: fit-content;
+      background-color: var(--background-default);
+      border-radius: 30px;
+      margin-right: 10px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+  
+      .material-icons {
+        font-size: 1.3rem;
+      }
+      
+      .date {
+        font-size: .8rem;
+        margin: 0 8px;
+      }
+    }
+  }
+
+  &__image {
+    max-width: 100%;
+    height: fit-content;
+    max-height: 400px;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 0 auto;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  &__actions {
+    min-height: 55px;
+    box-sizing: border-box;
+    padding: 8px;
+    display: flex;
+    align-content: center;
+
+    .icon {
+      cursor: pointer;
+      font-size: 2rem;
+
+      &::selection {
+        background: none;
+      }
+    }
+
+    .like {
+      color: rgb(250, 46, 46);
+    }
+  }
+
+  &__description {
+    margin: 10px 0;
+    max-width: 100%;
+    padding: 8px;
+    word-wrap: break-word;
+  }
+
+  &__comments {
+    .title {
+      margin-left: 10px;
+      cursor: default;
+    }
+  }
+
+  .comment-form {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .material-icons {
+    ::selection {
+      background: none;
+    }
+  }
+}

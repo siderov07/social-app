@@ -1,0 +1,76 @@
+<div class="post-form box-shadow">
+    <div class="form-overlay" *ngIf="isLoading">
+        <app-loading-spinner class="loading-spinner"></app-loading-spinner>
+    </div>
+
+    <div class="post-form__close circle-icon delete-icon" (click)="closeDialog()">
+        <span class="material-icons">
+          close
+        </span>
+    </div>
+
+    <div class="post-form__header">
+        <h1>{{formMode}}</h1>
+    </div>
+
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()" class="post-form__body">
+        <div class="post-status">
+            <mat-form-field appearance="none">
+                <mat-select panelClass="main-select-panel" formControlName="public">
+                    <mat-option value="true">Public</mat-option>
+                    <mat-option value="false">Private</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <app-text-area
+            [showAbove]="false"
+            class="post-description"
+            (submitInput)="onSubmit()"
+            (contentInput)="updateDescription($event)"
+            [toggleSubmit]="false"
+            [placeholder]="'Description'"
+            [value]="this.postForm.controls.description.value">   
+        </app-text-area>
+
+        <div class="post-location">
+            <div class="circle-icon" (click)="toggleLocation()">
+                <span
+                class="material-icons"
+                *ngIf="showLocation"
+                matTooltip="Remove the location">
+                    location_on
+                </span>
+
+                <span
+                    class="material-icons"
+                    *ngIf="!showLocation"
+                    matTooltip="Add a location">
+                    location_off
+                </span>
+            </div>
+
+            <input
+                class="post-location__input"
+                type="text"
+                placeholder="Location"
+                *ngIf="showLocation"
+                formControlName='location'>
+        </div>
+
+        <app-file-upload
+            class="post-image-upload"
+            (emittedFile)="onFileSelected($event)"
+            [fileUrl]="fileUrl">
+        </app-file-upload>
+
+        <button
+            *ngIf="!isLoading"
+            [disabled]="!selectedFile"
+            [ngClass]="{
+                'disabled': !selectedFile,
+                'primary': selectedFile
+            }"
+            class="button medium-btn">Post</button>
+    </form>
+</div>

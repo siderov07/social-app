@@ -1,0 +1,30 @@
+<div class="avatar-form box-shadow">
+    <div class="form-overlay" *ngIf="isLoading">
+        <app-loading-spinner class="loading-spinner"></app-loading-spinner>
+    </div>
+
+    <div class="avatar-form__close circle-icon delete-icon" (click)="closeDialog()">
+        <span class="material-icons">
+          close
+        </span>
+    </div>
+
+    <div class="avatar-form__header">
+        <h2>Avatar change</h2>
+    </div>
+
+    <form class="avatar-form__body" (ngSubmit)="onSubmit()" [formGroup]="avatarForm">
+        <app-file-upload
+            class="avatar-upload"
+            (emittedFile)="onFileSelected($event)">
+        </app-file-upload>
+
+        <button
+            [disabled]="!selectedFile"
+            [ngClass]="{
+                'disabled': !selectedFile,
+                'primary': selectedFile
+            }"
+            class="button medium-btn">Change</button>
+    </form>
+</div>

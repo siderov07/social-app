@@ -1,0 +1,14 @@
+<div class="confirm-dialog">
+  <div class="confirm-dialog__close circle-icon delete-icon" (click)="closeDialog()">
+    <span class="material-icons">
+      close
+    </span>
+  </div>
+  
+  <p class="confirm-dialog__header">Are you sure you want to delete this ?</p>
+  
+  <div class="confirm-dialog__body">
+    <button (click)="onSubmit(false)" class="button medium-btn primary">No</button>
+    <button (click)="onSubmit(true)" class="button medium-btn primary">Yes</button>
+  </div>
+</div>

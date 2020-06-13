@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~normalize.scss";
+@import "styles/constants";
+@import "styles/buttons";
+@import "styles/forms/main-form";
+@import "styles/common";
+@import "styles/navigation-menu";
+@import "styles/ng-modificators/mat-dialog";
+@import "~@ctrl/ngx-emoji-mart/picker";
+@import "styles/forms/emoji-picker";
+@import "styles/media-query";
+@import "styles/wrapper";
+@import "styles/hover";
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--background-default);
+  color: $font-color !important;
+  overflow-x: hidden;
+  overflow-y: overlay;
+}
+
+.l-wrapper {
+  display: flex;
+  width: 100vw;
+
+  &__aside {
+    max-width: 30%;
+    min-height: calc(100vh - 50px);
+    z-index: 1;
+  }
+
+  &__main {
+    min-height: calc(100vh - 130px);
+    height: fit-content;
+    margin: 0 auto;
+    padding-top: 20px;
+    max-width: 70%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .l-wrapper {
+    &__aside {
+      position: fixed;
+      max-width: 50vw;
+      height: 100vh;
+      z-index: 100;
+      max-width: 80%;
+    }
+
+    &__main {
+      padding-left: 70px;
+    }
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .l-wrapper {
+    &__aside {
+      position: fixed;
+      max-width: 100vw;
+      max-width: 100%;
+    }
+  }
+}

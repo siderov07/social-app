@@ -1,0 +1,202 @@
+.container {
+  &__header {
+    position: absolute;
+    top: 0px;
+    width: 100vw;
+    left: 0;
+    height: 500px;
+    box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.75);
+    z-index: -1;
+    background-attachment: fixed;
+    background-position: center left;
+    background-size: cover;
+    background-image: url(../../../../../assets/backgrounds/nebula-space-art-ys.jpg);
+
+    &::after {
+      content: '';
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      height: 50px;
+      bottom: 0;
+    }
+  }
+
+  &__user-info {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    color: var(--font-color-primary);
+    max-width: 100%;
+
+    .user {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 50%;
+      margin-right: 20px;
+
+      .image {
+        overflow: hidden;
+        min-width: 100px;
+        max-height: 100px;
+        position: relative;
+        border-radius: 50%;
+
+        .circle-icon {
+          position: absolute;
+          color: rgb(88, 196, 114);
+          top: 33px;
+          right: 33px;
+          z-index: -1;
+        }
+        
+        img {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+
+      .image-overlay:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgba(0,0,0,0.6);
+        opacity: 0;
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+      }
+
+      .image-overlay:hover:after {
+        opacity: 1;
+      }
+
+      .image-overlay:hover {
+        .circle-icon {
+          z-index: 3;
+        }
+      }
+
+      .username {
+        font-size: 1.5rem;
+        margin: 10px 0;
+      }
+    }
+
+    .user-stat {
+      background-color: rgba(133, 133, 133, 0.2);
+      box-shadow: 0px 15px 25px 0px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(128, 128, 128, 0.336);
+
+      &__item {
+        color: var(--font-color-primary);
+        display: block;
+        text-decoration: none;
+        min-height: 60px;
+        box-sizing: border-box;
+        position: relative;
+        padding: 20px;
+        white-space: nowrap;
+        min-width: 120px;
+
+        &.active {
+          background-color: rgba(255, 255, 255, 0.4);
+          border-bottom: 1px solid var(--primary-default);
+        }
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.4);
+        }
+      }
+    }
+  }
+
+  &__body {
+    margin-top: 200px;
+    z-index: -10;
+    margin-bottom: 50px;
+
+    .navigation {
+      width: 50px;
+      height: 50px;
+      margin-top: -120px;
+      width: 1170px;
+      max-width: 100%;
+      left: 0;
+      z-index: 0;
+      display: flex;
+      justify-content: center;
+      box-sizing: border-box;
+
+      .nav-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        align-items: center;
+        color: white;
+        cursor: pointer;
+        max-width: 100%;
+        box-sizing: border-box;
+        max-width: 100%;
+        padding: 0 20px;
+        overflow: hidden;
+        overflow-x: auto;
+        white-space: nowrap;
+        height: 50px;
+
+        &__item {
+          display: inline-block;
+          position: relative;
+          height: 50px;
+          box-sizing: border-box;
+
+          .link {
+            display: flex;
+            color: white;
+            text-decoration: none;
+            align-items: center;
+            height: 50px;
+            padding: 0 20px;
+            box-sizing: border-box;
+
+            &.active, &:hover {
+              background-color: rgba(133, 133, 133, 0.3);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.dark-bg {
+  background-image: url(../../../../../assets/backgrounds/nebula-space-art-ys.jpg);
+}
+
+.light-bg {
+  background-image: url(../../../../../assets/backgrounds/329976.jpg);
+}
+
+
+@media only screen and (max-width: 768px) {
+  .container {
+    &__user-info {
+      display: block;
+
+      .user {
+        margin: 0 auto;
+      }
+
+      .user-stat {
+        margin: 0 auto;
+        margin-top: 10px;
+      }
+    }
+  }
+}

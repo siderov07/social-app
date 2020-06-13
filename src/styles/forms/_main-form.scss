@@ -1,0 +1,111 @@
+.main-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--font-color-primary);
+
+  &__body {
+    margin: 0 auto 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    padding: 0 20px;
+    margin-top: 75px;
+    box-sizing: border-box;
+
+    .msg {
+      position: absolute;
+      border-radius: 6px;
+      box-sizing: border-box;
+      max-width: 100%;
+      width: calc(100% - 40px);
+      word-wrap: break-word;
+      padding: 15px;
+      margin-left: 20px;
+      left: 0;
+      top: -80px;
+      
+      &--error {
+        background-color: var(--error-light);
+        border: 2px solid var(--error-default);
+        color: var(--error-default);
+      }
+
+      &--success {
+        background-color: var(--success-light);
+        border: 2px solid var(--success-default);
+        color: var(--success-default);
+      }
+
+      &--disclaimer {
+        background-color: var(--disclaimer-default);
+        border: 2px solid var(--error-default);
+        color: var(--font-color-default);
+      }
+    }
+
+    .form-item {
+      width: 100%;
+      position: relative;
+      margin: 15px 0 10px;
+
+      &__label {
+        text-transform: capitalize;
+
+        &--required::after {
+          content: " *";
+          color: red;
+        }
+
+        font-weight: 500;
+        letter-spacing: 0.05rem;
+      }
+
+      &__input {
+        border: none;
+        outline: none;
+        box-sizing: border-box;
+        height: 50px;
+        width: 100%;
+        padding: 15px;
+        margin: 10px 0 30px;
+        border-radius: 6px;
+        border-bottom: 2px solid var(--primary-default);
+        color: var(--primary-font-color);
+        background-color: var(--background-secondary);
+
+        &::placeholder {
+          color: var(--primary-font-color);
+        }
+
+        &:focus {
+          box-shadow: 0px 0px 7px 0px var(--primary-default);
+        }
+      }
+
+      &--message {
+        color: var(--error-default);
+        font-size: .9rem;
+        margin-top: -1.09rem;
+      }
+    }
+
+    .button {
+      margin: 0 auto;
+      width: 50%;
+    }
+  }
+}
+
+@media only screen and (max-width: 764px) {
+  .main-form {
+    &__body {
+      width: 100% !important;
+    }
+
+    .button {
+      width: 100%;
+    }
+  }
+}

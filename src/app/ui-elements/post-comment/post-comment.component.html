@@ -1,0 +1,50 @@
+<div (clickOutside)="hideEdit()" class="comment-item">
+  <div class="actions">
+    <time
+      matTooltip="{{ comment.updatedOn | convertDate | date: 'medium' }}"
+      class="date hide-w414">
+      {{ comment.updatedOn | convertDate | date: "mediumDate" }}
+    </time>
+    <ng-container *ngIf="canActivateActions">
+      <div
+        class="circle-icon default-icon"
+        (click)="toggleEdit()"
+        [matTooltipPosition]="'above'"
+        matTooltip="Edit comment">
+        <span class="material-icons">
+          edit
+        </span>
+      </div>
+      
+      <div
+        class="circle-icon delete-icon"
+        (click)="onDeleteComment()"
+        [matTooltipPosition]="'above'"
+        matTooltip="Delete comment">
+        <span class="material-icons">
+          delete_forever
+        </span>
+      </div>
+    </ng-container>
+  </div>
+    <div class="comment-item__author">
+      <img
+      class="author-img"
+      alt="Profile image"
+      [src]="getAvatar(comment.author.avatar)"/>
+      <a [routerLink]="['/user', comment.author.id]" class="author-name">{{ comment.author.username }}</a>
+    </div>
+  <p *ngIf="!isEditToggled" class="comment-content">
+    {{ comment.content | unescape }}
+  </p>
+  <div *ngIf="isEditToggled" class="comment-content">
+    <app-text-area 
+      [showAbove]="true"
+      (submitInput)="submitEditComment($event)"
+      [value]="comment.content | unescape"
+      [toggleSubmit]="true"
+      placeholder="Update comment">
+    </app-text-area>
+  </div>
+</div>
+

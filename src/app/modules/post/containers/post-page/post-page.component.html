@@ -1,0 +1,11 @@
+<ng-container *ngIf="(post$ | async) as post">
+  <ng-container *ngIf="post.public || currentUser">
+    <app-post-card 
+    [post]="post" 
+    [canOpenImage]="true"
+    [visibleComments]="100">
+  </app-post-card>
+</ng-container>
+<div *ngIf="!post.public && !currentUser">
+  The post is private. If you want to see it you have to <a routerLink="/login">login</a>
+</div>

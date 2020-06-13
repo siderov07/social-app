@@ -1,0 +1,11 @@
+.followers {
+    &__header {
+        text-align: center;
+        color: var(--font-color-primary);
+    }
+
+    &__list {
+        padding: 0;
+        list-style: none;
+    }
+}

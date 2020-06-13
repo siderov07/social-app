@@ -1,0 +1,14 @@
+<ng-container class="following" *ngIf="currentUser">
+  <app-user-header [currentUser]="currentUser"></app-user-header>
+
+  <div class="following__header">
+    <h3 *ngIf="currentUser.followingCount === 0">No following</h3>
+    <h3 *ngIf="currentUser.followingCount !== 0">Following:</h3>
+  </div>
+
+  <ul class="following__list" *ngIf="currentUser.followingCount > 0">
+    <li *ngFor="let user of currentUser.following; let providedUser = user">
+      <app-user-listing class="user-listing" [user]="user"></app-user-listing>
+    </li> 
+  </ul>
+</ng-container>

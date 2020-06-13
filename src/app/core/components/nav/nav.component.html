@@ -1,0 +1,30 @@
+<header class="header">
+  <nav class="top-nav box-shadow">
+    <a class="logo" routerLink="/">
+      <img class="logo__img" src="../../../../assets/logo.png" alt="">
+      <span class="logo__title">NEBULA</span>
+    </a>
+
+    <ng-container *ngIf="(loggedUser$ | async) as currentUser">
+      <app-search-bar class="search-bar"></app-search-bar>
+      <!-- User Profile -->
+      <div class="user-actions">
+        
+        <app-notifications 
+          class="notifications"
+          (readNotifications)="readNotifications()"
+          [notifications]="notificationsList">
+        </app-notifications>
+      
+        <app-nav-user-profile
+        [currentUser]="currentUser"
+        (logout)="logout()"
+        (changeTheme)="toggleTheme()">
+      </app-nav-user-profile>
+    </div>
+      
+  </ng-container>
+  </nav>
+
+</header>
+

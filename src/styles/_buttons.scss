@@ -1,0 +1,65 @@
+.button {
+  border-radius: 5px;
+  outline: none;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.primary {
+  background-color: var(--primary-default);
+  border: 2px solid var(--primary-default);
+
+  &:hover {
+    background-color: var(--primary-dark);
+  }
+}
+
+.delete {
+  background-color: var(--error-default);
+  border: 2px solid var(--error-default);
+
+  &:hover {
+    background-color: var(--error-dark);
+  }
+}
+
+.active-link {
+  background-color: var(--primary-default) !important;
+  color: white !important;
+}
+
+.small-btn {
+  width: fit-content;
+  padding: 0 10px;
+  height: 30px;
+}
+
+.medium-btn {
+  width: 100px;
+  height: 40px;
+}
+
+.big-btn {
+  width: 160px;
+  height: 50px;
+  font-size: 16px;
+}
+
+.outline-primary {
+  border-radius: 5px;
+  border: 2px solid var(--primary-default);
+  color: var(--font-color-primary);
+  box-sizing: border-box;
+  background: none;
+
+  &:hover {
+    background-color: var(--primary-default);
+    color: white;
+  }
+}

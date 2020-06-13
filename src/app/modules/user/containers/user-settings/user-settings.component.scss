@@ -1,0 +1,46 @@
+.settings {
+    &__header {
+        text-align: center;
+        color: var(--font-color-primary);
+    }
+
+    &__body {
+        list-style: none;
+        padding: 0;
+        display: flex;
+
+        .settings-action {
+            color: var(--font-color-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            width: 200px;
+            height: 60px;
+            background-color: rgba(175, 175, 175, 0.2);
+            border: 1px solid rgb(171, 171, 171);
+            margin: 5px;
+
+            .material-icons {
+                font-size: 30px;
+                margin: 0 10px;
+            }
+        }
+
+        .settings-action:hover {
+            background-color: rgba(175, 175, 175, 0.4);
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .settings {
+        &__body {
+            flex-direction: column;
+
+            .settings-action {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    }
+}

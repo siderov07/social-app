@@ -1,0 +1,9 @@
+<div class="image-dialog">
+    <div class="image-dialog__close circle-icon delete-icon" (click)="closeDialog()">
+        <span class="material-icons">
+          close
+        </span>
+    </div>
+    
+    <img class="image-dialog__image" *ngIf="imageLink" [src]="imageLink">
+</div>

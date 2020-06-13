@@ -1,0 +1,41 @@
+<aside [ngClass]="{'aside-container--expand': isToggled}" class="aside-container box-shadow">
+  
+  <nav class="aside-container__nav">
+
+    <ul class="side-nav" >
+      <li class="side-nav__item" >
+        <a class="link" routerLink="/home" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
+          <span class="material-icons icon">home</span>
+          <span class="text-content">Home</span>
+        </a>
+      </li>
+      <li class="side-nav__item" *ngIf="isUserLogged$ | async">
+        <a class="link" routerLink="/home/private" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
+          <span class="material-icons icon">supervised_user_circle</span>
+          <span class="text-content">Private</span>
+        </a>
+      </li>
+      <ng-container *ngIf="!(isUserLogged$ | async)">
+        <li class="side-nav__item">
+          <a class="link" routerLink="/login" routerLinkActive="active">
+            <span class="material-icons icon">login</span>
+            <span class="text-content">Login</span>
+          </a>
+        </li>
+        <li class="side-nav__item">
+          <a routerLink="/register" class="link" routerLinkActive="active">
+            <span class="material-icons icon">how_to_reg</span>
+            <span class="text-content">Register</span>
+          </a>
+        </li>
+      </ng-container>
+        <li (click)="toggle()" class="side-nav__item side-nav__item--bottom" [ngClass]="{'side-nav__item--bottom--expand': isToggled}">
+          <a class="link" >
+            <span [ngClass]="{'flip-horizontal': isToggled}" class="material-icons icon">double_arrow</span>
+            <span class="text-content">Hide</span>
+          </a>
+        </li>
+    </ul>
+  </nav>
+</aside>
+<div (click)="hide()" *ngIf="isToggled" class="overlay"></div>

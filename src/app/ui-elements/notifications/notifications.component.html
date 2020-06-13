@@ -1,0 +1,37 @@
+<div (clickOutside)="hideNotifications()" class="notifications-container">
+    <span
+    (click)="toggleNotifications()"
+    class="notifications-button material-icons"
+    [ngClass]="{'shadow-primary': isNotificationsToggled}">
+        notifications
+    </span>
+    <span *ngIf="getUnreadNotifications() !== 0" class="counter">{{getUnreadNotifications()}}</span>
+
+    <div *ngIf="isNotificationsToggled" class="notifications box-shadow">
+        <div *ngIf="notifications?.length" class="notifications__header">
+            <h2>Notifications</h2>
+        </div>
+        <div *ngIf="!notifications?.length" class="notifications__header">
+            <h2>Don't have any notifications.</h2>
+        </div>
+
+        <ul (click)="hideNotifications()" *ngIf="notifications?.length && notifications" class="notifications__body">
+            <li [ngClass]="{'unread-notification': notification.status === 'unread'}"
+                class="notification-item" 
+                *ngFor="let notification of notifications">
+
+                <img class="notification-item__avatar" src="{{notification.notificationAuthor.avatar | avatar}}" alt="Avatar">
+                <p *ngIf="notification.type === 'comment'" class="notification-item__text">
+                    {{notification.notificationAuthor.username}} commented your post.
+                </p>
+                <p *ngIf="notification.type ==='like'" class="notification-item__text">
+                    {{notification.notificationAuthor.username}} liked your post.
+                </p>
+                <p *ngIf="notification.type ==='post'" class="notification-item__text">
+                    {{notification.notificationAuthor.username}} created new post.
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
+<div (click)="hideNotifications()" *ngIf="isNotificationsToggled" class="overlay"></div>

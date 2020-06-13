@@ -1,0 +1,66 @@
+.emoji-mart {
+  background-color: var(--background-default) !important;
+  border: 2px solid lightgray !important;
+  box-shadow: var(--background-tertiary-shadow) !important;
+  width: 400px !important;
+
+  &-emoji {
+    * {
+      cursor: pointer !important;
+    }
+    
+    &:hover::before {
+        background-color: var(--primary-dark) !important;
+    }
+  }
+
+  &-scroll {
+    padding: 0 !important;
+    height: 160px;
+  }
+
+  &-preview {
+    display: none !important;
+    opacity: 0 !important;
+    * {
+      display: none !important;
+    }
+  }
+
+  &-search {
+    display: none !important;
+  }
+
+  &-category-label {
+    position: static !important;
+
+    span {
+      background-color: var(--background-secondary) !important;
+      color: var(--font-color-primary) !important;
+    }
+  }
+
+  &-anchor {
+    color: var(--font-color-primary) !important;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--primary-default) !important;
+    }
+
+    &-selected {
+      color: var(--primary-default) !important;
+
+      .emoji-mart-anchor-bar {
+        background-color: var(--primary-default) !important;
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 715px) {
+  .emoji-mart {
+    width: 50vw !important;
+  }
+}

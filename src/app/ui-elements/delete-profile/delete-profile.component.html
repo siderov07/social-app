@@ -1,0 +1,51 @@
+<div class="main-form delete-profile">
+    <div class="delete-profile__close circle-icon delete-icon" (click)="closeDialog()">
+        <span class="material-icons">
+          close
+        </span>
+    </div>
+
+    <div class="form-overlay" *ngIf="isLoading">
+        <app-loading-spinner class="loading-spinner"></app-loading-spinner>
+    </div>
+    
+    <div class="main-form__header">
+        <h2>Delete profile</h2>
+    </div>
+
+    <form class="main-form__body" [formGroup]="deleteProfileForm" (ngSubmit)="onSubmit()">
+        <div class="msg msg--error" *ngIf="deletionFail">
+            <span>{{deletionFail}}</span>
+        </div>
+
+        <div class="msg msg--disclaimer" *ngIf="!deletionFail">
+            <span>Are you sure? Once you confirm, all your account data will be deleted.</span>
+        </div>
+
+        <div class="form-item">
+            <label class="form-item__label form-item__label--required">Password</label>
+            <input type="password" formControlName="password" class="form-item__input" placeholder="Password">
+
+            <div 
+                *ngIf="deleteProfileForm.controls.password.invalid && deleteProfileForm.controls.password.touched" 
+                class="form-item--message">
+                {{passwordValidationMessage}}
+            </div>
+        </div>
+
+        <div class="form-item">
+            <label class="form-item__label form-item__label--required">Type in 'Delete' to confirm'</label>
+            <input formControlName="confirmation" class="form-item__input">
+        </div>
+
+        <button  
+            class="button medium-btn delete"
+            [disabled]="deleteProfileForm.invalid"
+            [ngClass]="{ 
+                'delete': !deleteProfileForm.invalid,
+                'disabled': deleteProfileForm.invalid
+            }">
+            Delete Profile
+        </button>
+    </form>
+</div>

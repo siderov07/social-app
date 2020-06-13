@@ -1,0 +1,25 @@
+<ng-container class="settings" *ngIf="currentUser">
+    <app-user-header [currentUser]="currentUser"></app-user-header>
+
+    <div class="settings__header">
+        <h2>User settings</h2>
+    </div>
+
+    <ul class="settings__body">
+        <li class="settings-action box-shadow" (click)="changeAvatar()">
+            <span class="material-icons">
+                insert_photo
+            </span>
+            
+            <span>Change avatar</span>
+        </li>
+
+        <li class="settings-action box-shadow" (click)="deleteProfile()">
+            <span class="material-icons">
+                delete_forever
+            </span>
+
+            <span>Delete profile</span>
+        </li>
+    </ul>
+</ng-container>

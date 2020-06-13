@@ -1,0 +1,91 @@
+<div class="main-form">
+  <div class="main-form__header">
+    <h1>Register</h1>
+  </div>
+
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="registerForm"
+    class="main-form__body" >
+
+    <div *ngIf="registerSuccess" class="msg msg--success" >
+      <span >Account created successfuly</span>
+    </div>
+    <div *ngIf="registerFail" class="msg msg--error" >
+      <span >{{registerFail}}</span>
+    </div>
+    
+    <div class="form-item">
+      <label class="form-item__label form-item__label--required">Username</label>
+      <input
+        formControlName="username"
+        class="form-item__input"
+        placeholder="Username"/>
+      <div
+        *ngIf="
+          registerForm.controls.username.invalid &&
+          registerForm.controls.username.touched "
+        class="form-item--message">
+        Invalid username
+      </div>
+    </div>
+    <div class="form-item">
+      <label class="form-item__label form-item__label--required">Email</label>
+      <input
+        formControlName="email"
+        class="form-item__input"
+        placeholder="Email"
+      />
+      <div
+        *ngIf="
+          registerForm.controls.email.invalid &&
+          registerForm.controls.email.touched "
+        class="form-item--message"
+      >
+        Invalid email
+    </div>
+    </div>
+
+    <div  matTooltip="Hello" class="form-item">
+      <label class="form-item__label form-item__label--required">Password</label>
+      <input
+        formControlName="password"
+        class="form-item__input"
+        type="password"
+        placeholder="Password" />
+      <div
+        class="form-item--message"
+        *ngIf="
+          registerForm.controls.password.invalid &&
+          registerForm.controls.password.touched " >
+        {{ passwordValidationMessage }}
+      </div>
+    </div>
+
+    <div class="form-item">
+      <label class="form-item__label form-item__label--required">Repeat password</label>
+      <input
+        formControlName="confirmPassword"
+        class="form-item__input"
+        type="password"
+        placeholder="Password" />
+      <div
+        class="form-item--message"
+        *ngIf="
+          registerForm.controls.confirmPassword.invalid &&
+          registerForm.controls.confirmPassword.touched || 
+          (passwordMatch$ | async)" > 
+        {{ confirmPasswordValidationMessage }}
+      </div>
+    </div>
+
+    <button
+      [disabled]="registerForm.invalid"
+      class="button medium-btn primary"
+      [ngClass]="{
+        primary: !registerForm.invalid,
+        disabled: registerForm.invalid }" >
+      Register
+    </button>
+  </form>
+</div>

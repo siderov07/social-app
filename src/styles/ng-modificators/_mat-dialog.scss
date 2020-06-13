@@ -1,0 +1,10 @@
+.mat-dialog-container {
+  background-color: var(--background-default);
+  color: var(--font-color-primary);
+  padding: 0px !important;
+}
+
+.cdk-global-scrollblock {
+  position: static;
+  overflow: hidden !important;
+}

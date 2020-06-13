@@ -1,0 +1,36 @@
+.user {
+  text-decoration: none;
+
+  .user-listing {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    position: relative;
+    background-color: rgba(175, 175, 175, 0.2);
+    border: 1px solid rgb(171, 171, 171);
+    box-sizing: border-box;
+    overflow: hidden;
+
+    &:hover {
+      background-color: rgba(175, 175, 175, 0.4);
+
+    }
+
+    &__bio {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+
+      .author-name {
+        color: var(--font-color-primary);
+      }
+    }
+
+    &__actions {
+      display: flex;
+    }
+  }
+}

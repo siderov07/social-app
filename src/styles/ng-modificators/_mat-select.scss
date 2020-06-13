@@ -1,0 +1,25 @@
+// Import in component styles URL if you want to use it.
+
+::ng-deep .mat-select-panel {
+  background-color: var(--background-default);
+  
+  * {
+    color: var(--font-color-primary);
+  }
+
+  .mat-selected {
+    background-color: var(--primary-default) !important;
+
+    * {
+      color: white;
+    }
+  }
+}
+
+::ng-deep .mat-form-field-type-mat-select .mat-select-value {
+  color: var(--font-color-primary);
+  background-color: var(--background-default);
+  border-radius: 15px;
+  padding: 7px;
+  box-sizing: border-box;
+}

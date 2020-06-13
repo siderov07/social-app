@@ -1,0 +1,18 @@
+.delete-profile {
+    position: relative;
+
+    &__close {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+
+@media only screen and (max-width: 410px) {
+    .main-form__body {
+        .form-item:nth-child(2) {
+            margin-top: 40px;
+        }
+    }
+
+}

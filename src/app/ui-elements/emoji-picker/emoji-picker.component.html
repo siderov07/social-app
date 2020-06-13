@@ -1,0 +1,22 @@
+<div (clickOutside)="hideEmojiPicker()" class="emoji">
+    <div class="circle-icon" matTooltip="Insert an emoji" (click)="toggleEmojiPicker()">
+        <span class="material-icons">
+            emoji_emotions
+        </span>
+    </div>
+    <div
+        [ngClass]="{
+            'emoji__block--top': showAbove,
+            'emoji__block--bottom': !showAbove
+        }"
+        class="emoji__block">
+        <emoji-mart
+            [set]="'twitter'"
+            [sheetSize]="20"
+            [exclude]="['search', 'nature', 'foods', 'activity', 'places', 'objects', 'symbols', 'flags', 'skintones']" 
+            (emojiClick)="onEmojiClick($event)"
+            [showPreview]="false"
+            *ngIf="isEmojiPickerToggled">
+        </emoji-mart>
+    </div>
+</div>

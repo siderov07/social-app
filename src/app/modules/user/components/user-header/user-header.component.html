@@ -1,0 +1,57 @@
+<ng-container *ngIf="currentUser">
+<div class="container">
+  <div [ngClass]="{'light-bg': !isDarkTheme(), 'dark-bg': isDarkTheme()}" class="container__header"></div>
+
+  <div class="container__user-info">
+    <div class="user">
+      <div class="image" [ngClass]="{ 'image-overlay': isMyProfile() } ">
+        <img src="{{currentUser.avatar | avatar}}" alt="">
+        
+        <div
+          class="circle-icon"
+          (click)="changeAvatar()"
+          *ngIf="isMyProfile()">
+          <span class="material-icons">
+            insert_photo
+          </span>
+        </div>
+      </div>
+      <span class="username">{{currentUser.username}}</span>
+      <ng-container *ngIf="!isMyProfile()">
+        <button *ngIf="!isFollowed" (click)="followUser()" class="button small-btn primary">Follow</button>
+        <button *ngIf="isFollowed" (click)="unfollowUser()" class="button small-btn primary">Unfollow</button>
+      </ng-container>
+    </div>
+    <div class="user-stat box-shadow">
+      <a class="user-stat__item hover-underline before-primary" [routerLink]="['/user', currentUser.id, 'followers']" routerLinkActive="active" >
+        Followers: {{currentUser.followersCount}}
+      </a>
+      <a class="user-stat__item hover-underline before-primary" [routerLink]="['/user', currentUser.id, 'following']" routerLinkActive="active">
+        Following: {{currentUser.followingCount}}
+      </a>
+    </div>
+  </div>
+
+  <div class="container__body">
+    <div class="navigation">
+      <ul class="nav-list">
+        <li class="nav-list__item hover-underline before-primary">
+          <a [routerLink]="['/user', currentUser.id, 'posts']" class="link"  routerLinkActive="active">
+            Posts
+          </a>
+        </li>
+        <li *ngIf="isMyProfile()" (click)="createPost()" class="nav-list__item hover-underline before-primary">
+          <a class="link">
+            Create post
+          </a>
+        </li>
+        <li *ngIf="isMyProfile()" class="nav-list__item hover-underline before-primary">
+          <a [routerLink]="['/user', currentUser.id, 'settings']" class="link"  routerLinkActive="active">
+            Settings
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</ng-container>

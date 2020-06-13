@@ -1,0 +1,11 @@
+<div (clickOutside)="hide()" class="search-container">  
+  <form class="search-form">
+    <input (keyup.enter)="showAllResults()" (click)="toggleResults()" #searchInput class="search-form__input" placeholder="Search">
+    <app-loading-spinner *ngIf="isLoading" class="search-form__spinner"></app-loading-spinner>
+  </form>
+  <div (click)="hide()" *ngIf="!isResultsHidden && usersList.length" class="search-result box-shadow">
+    <app-user-listing *ngFor="let user of usersList" [user]="user" ></app-user-listing>
+    <a class="show-all" [routerLink]="['/user-search']" [queryParams]="{search: searchInput.value}">Show all results</a>
+  </div>
+</div>
+<div (click)="hide()" class="overlay" *ngIf="!isResultsHidden && usersList.length"></div>

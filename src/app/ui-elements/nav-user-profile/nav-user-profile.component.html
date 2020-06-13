@@ -1,0 +1,30 @@
+<div (clickOutside)="hideProfile()" class="user-profile-container">
+  <img
+    role="button"
+    (click)="toggleProfile()"
+    #userProfileBtn
+    class="avatar"
+    [ngClass]="{ 'shadow-primary': isProfileToggled }"
+    src="{{currentUser?.avatar | avatar}}"
+    alt="Profile Image"
+  />
+
+  <ul (click)="hideProfile()" *ngIf="isProfileToggled" class="menu menu-profile box-shadow">
+    <li class="menu__item hover-underline before-primary">
+      <a [routerLink]="['user', currentUser?.id]">
+        My Profile
+      </a>
+    </li>
+    <li (click)="changeTheme.emit(null)" class="menu__item hover-underline before-primary">
+      <a>
+        Change theme
+      </a>
+    </li>
+    <li class="menu__item hover-underline before-primary" (click)="logout.emit(null)">
+      <a>
+        Logout
+      </a>
+    </li>
+    <div class="overlay"></div>
+  </ul>
+</div>

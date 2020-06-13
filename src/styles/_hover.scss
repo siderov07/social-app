@@ -1,0 +1,28 @@
+// Must set position: relative to the element
+.hover-underline {
+  &:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 0px;
+    left: 0;
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: .5s all;
+    transition: .5s all;
+  }
+
+  &:hover:before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+
+.before-primary {
+  &:before {
+    background-color: var(--primary-default);
+  }
+}

@@ -1,0 +1,14 @@
+<a class="user" [routerLink]="['/user', user.id]">
+  <div class="user-listing">
+    <div class="user-listing__bio">
+      <img
+      class="author-img"
+      src="{{ user.avatar | avatar}}"
+      alt="Profile image"
+      />
+      <span class="author-name">{{ user.username }}</span>
+    </div>  
+    <div class="user-listing__actions"></div>
+  </div>
+</a>
+  

@@ -1,0 +1,83 @@
+.post-form {
+  width: 500px;
+  max-width: 100%;
+  background-color: var(--background-secondary);
+  color: var(--font-color-primary);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 15px 0;
+  position: relative;
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  
+  &__body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .post-status {
+      display: flex;
+      justify-content: flex-start;
+      width: 80%;
+      height: 50px; 
+      margin-bottom: 20px;
+    }
+
+    .post-description {
+      width: 80%;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    .post-location {
+      width: 80%;
+      height: 35px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      margin-bottom: 20px;
+
+      .circle-icon {
+        color: rgb(246, 101, 81);
+      }
+
+      &__input {
+        width: 50%;
+        padding: 7px 0 6px 7px;
+        border-radius: 15px;
+        outline: none;
+        border: none;
+        background-color: var(--background-default);
+        margin-left: 5px;
+        
+        &::placeholder {
+          color: var(--font-color-primary);
+        }
+      }
+    }
+
+    .post-image-upload {
+      width: 80%;
+    }
+  }
+}
+
+@media only screen and (max-width: 490px) {
+  button {
+    width: 80%;
+  }
+
+  ::ng-deep .mat-form-field-type-mat-select .mat-select-value {
+    text-align: center;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+}

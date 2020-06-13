@@ -1,0 +1,28 @@
+  <div (click)="inputField.focus()" class="text-area">
+    <textarea
+      [(ngModel)]="value"
+      autosize
+      #inputField
+      (keyup.enter)="$event.target.blur();submitForm()"
+      (input)="onInput()"
+      rows="1"
+      [maxRows]="maxRows"
+      class="text-area__input"
+      type="text"
+      [placeholder]="placeholder"></textarea>
+
+   <span 
+    class="material-icons text-area__submit-icon"
+    *ngIf="toggleSubmit"
+    (click)="submitForm()">
+    subdirectory_arrow_left
+  </span>
+
+  <app-emoji-picker
+    [showAbove]="showAbove"
+    [isEmojiPickerToggled]="toggleEmoji"
+    [ngClass]="{'text-area__emoji--right': !toggleSubmit}"
+    class="text-area__emoji"
+    (inputEmoji)="onEmoji($event)">
+  </app-emoji-picker>
+</div>

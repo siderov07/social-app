@@ -1,0 +1,38 @@
+<div
+    class="drop-zone"
+    appDropZone
+    (dropped)="onFileChange($event)"
+>
+    <div
+        class="drop-zone__actions"
+        *ngIf="!selectedFile"
+    >
+        <input
+            class="hide"
+            type="file"
+            accept=".jpg"
+            #fileInput
+            formControlName="image"
+            (change)="onFileChange($event.target.files[0])"
+        >
+
+        <p>Drag and Drop or </p>
+
+        <div
+            class="circle-icon"
+            (click)="fileInput.click()">
+        
+            <img src="../../../assets/icons/insert-photo.svg" alt="Insert a photo">
+        </div>
+    </div>
+
+    <div class="drop-zone__image" *ngIf="selectedFile">
+        <span
+            (click)="removeSelection()"
+            class="material-icons circle-icon delete-icon">
+            clear
+        </span>
+
+        <img (click)="openSelectedImage()" [src]="previewUrl" alt="Inserted picture">
+    </div>
+</div>

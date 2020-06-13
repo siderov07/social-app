@@ -1,0 +1,41 @@
+<div class="main-form">
+    <div class="main-form__header">
+        <h1>Login</h1>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="main-form__body">
+        <div *ngIf="loginFail" class="msg msg--error">
+            <span>Invalid username/password</span>
+        </div>
+
+        <div class="form-item">
+            <label class="form-item__label form-item__label--required">Username</label>
+            <input formControlName="username" class="form-item__input" placeholder="Username">
+            <div 
+                *ngIf="loginForm.controls.username.invalid && loginForm.controls.username.touched" 
+                class="form-item--message">
+                Invalid username
+            </div>
+        </div>
+
+        <div class="form-item">
+            <label class="form-item__label form-item__label--required">Password</label>
+            <input formControlName="password" class="form-item__input" type="password" placeholder="Password">
+            <div 
+                class="form-item--message"
+                *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched"
+                >
+                {{passwordValidationMessage}}
+            </div>
+        </div>
+        
+        <button [disabled]="loginForm.invalid"
+            [ngClass]="{
+                'primary': !loginForm.invalid,
+                'disabled': loginForm.invalid
+            }" 
+            class="button medium-btn primary">
+            Login
+        </button>
+    </form>
+</div>
