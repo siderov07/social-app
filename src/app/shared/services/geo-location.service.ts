@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IGeoLocation } from '../entities/geoLocation/geoLocation.interface';
+import { IGeoLocation } from '../entities/geoLocation/geo-location.interface';
 import { GeoApi } from '../constants';
 
 @Injectable()

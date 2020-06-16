@@ -7,7 +7,9 @@
 
   <div class="wrapper">
     <app-post-card class="wrapper__item" *ngFor="let post of postsList" [post]="post"></app-post-card>
+    <app-loading-spinner *ngIf="loadMore" class="loading-spinner"></app-loading-spinner>
+    <p *ngIf="(postsList?.length === 0 && !loadMore)">This user dont have any posts.</p>
   </div>
   <ng-container *ngIf="infinityScroll$ | async"></ng-container>
-
+  <app-scroll-to-top></app-scroll-to-top>
 </ng-container>

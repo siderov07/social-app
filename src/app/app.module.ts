@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-import { UiElementsModule } from './ui-elements/ui-elements.module';
+import { SocialAppModule } from './social-app/social-app.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +19,7 @@ import { UiElementsModule } from './ui-elements/ui-elements.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    UiElementsModule
+    SocialAppModule
   ],
   bootstrap: [AppComponent],
 })

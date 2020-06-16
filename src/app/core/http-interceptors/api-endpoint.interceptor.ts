@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
-} from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { GeoApi } from 'src/app/shared/constants';
+import { ApiRoutes } from '../config/api/api-routes';
 
 @Injectable()
 export class EndpointInterceptor implements HttpInterceptor {
@@ -21,7 +16,7 @@ export class EndpointInterceptor implements HttpInterceptor {
       });
     } else {
       request = request.clone({
-        url: environment.apiUrl + '/' + request.url
+        url: ApiRoutes.BaseUrl + '/' + request.url
       });
     }
 

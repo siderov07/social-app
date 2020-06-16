@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 import { UnescapePipe } from './pipes/unescape.pipe';
-import { MessageDialogComponent } from './message-dialog/message-dialog.component';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { ImageDialogComponent } from './dialogs/image-dialog/image-dialog.component';
+import { MessageDialogComponent } from './dialogs/message-dialog/message-dialog.component';
+import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
 import { ConvertDatePipe } from './pipes/convert-date.pipe';
 import { GeoLocationService } from './services/geo-location.service';
 import { DropZoneDirective } from './directives/drop-zone.directive';

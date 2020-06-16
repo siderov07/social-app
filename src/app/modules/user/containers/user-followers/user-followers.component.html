@@ -2,8 +2,8 @@
     <app-user-header [currentUser]="currentUser"></app-user-header>
 
     <div class="followers__header">
-        <h3 *ngIf="currentUser.followingCount === 0">No followers</h3>
-        <h3 *ngIf="currentUser.followingCount !== 0">Followers:</h3>
+        <h3 *ngIf="currentUser.followersCount === 0">No followers</h3>
+        <h3 *ngIf="currentUser.followersCount !== 0">Followers:</h3>
     </div>
 
     <ul class="followers__list" *ngIf="currentUser.followersCount > 0">

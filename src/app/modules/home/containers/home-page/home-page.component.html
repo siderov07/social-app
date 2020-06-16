@@ -1,0 +1,6 @@
+<div class="wrapper">
+  <app-post-card class="wrapper__item" *ngFor="let post of postsList" [post]="post"></app-post-card>
+  <app-loading-spinner *ngIf="loadMore" class="loading-spinner"></app-loading-spinner>
+</div>
+<ng-template *ngIf="infinityScroll$ | async"></ng-template>
+<app-scroll-to-top></app-scroll-to-top>

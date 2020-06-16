@@ -1,0 +1,26 @@
+.avatar-form {
+    width: 300px;
+    max-width: 100%;
+    text-align: center;
+    padding: 5px;
+    max-width: 100%;
+    background-color: var(--background-secondary);
+    color: var(--font-color-primary);
+    position: relative;
+
+    &__close {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+    }
+    
+    &__body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .avatar-upload {
+            width: 100%;
+        }
+    }
+}

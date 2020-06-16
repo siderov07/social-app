@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiRoutes } from '../config/api/api-routes';
 import { IPost } from '../entities/posts/post.interface';
-import { take } from 'rxjs/operators';
+import { take, catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { ErrorMessages } from '../config/constants/error-messages';
 
 @Injectable()
 export class PostsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   // Gets only public posts
-  // tslint:disable-next-line: no-shadowed-variable
-  getPublicPosts(take: number, skip: number): Observable<Array<IPost>> {
-    return this.http.get<Array<IPost>>(`${ApiRoutes.Posts}?take=${take}&skip=${skip}`);
+  getPublicPosts(takeFrom: number, skip: number): Observable<Array<IPost>> {
+    return this.http.get<Array<IPost>>(`${ApiRoutes.Posts}?take=${takeFrom}&skip=${skip}`).pipe(take(1));
   }
 
   // Gets followers public & private posts and the logged user posts
-  // tslint:disable-next-line: no-shadowed-variable
-  getPrivatePosts(take: number, skip: number): Observable<Array<IPost>> {
-    return this.http.get<Array<IPost>>(`${ApiRoutes.Posts}/${ApiRoutes.Dashboard}?take=${take}&skip=${skip}`);
+  getPrivatePosts(takeFrom: number, skip: number): Observable<Array<IPost>> {
+    return this.http.get<Array<IPost>>(`${ApiRoutes.Posts}/${ApiRoutes.Dashboard}?take=${takeFrom}&skip=${skip}`).pipe(take(1));
   }
 
   addComment(postId: number, content: string): Observable<IPost> {
@@ -51,6 +51,16 @@ export class PostsService {
   }
 
   getPostById(postId: number): Observable<IPost> {
-    return this.http.get<IPost>(`${ApiRoutes.Posts}/${postId}`);
+    return this.http.get<IPost>(`${ApiRoutes.Posts}/${postId}`).pipe(
+      take(1),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.router.navigateByUrl('/');
+          throw new Error ('Post not found. Error: 404');
+        } else {
+          throw new Error(ErrorMessages.UnknownError);
+        }
+      })
+    );
   }
 }

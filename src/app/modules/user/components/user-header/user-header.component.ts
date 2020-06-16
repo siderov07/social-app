@@ -6,11 +6,11 @@ import { IJwtToken } from 'src/app/core/entities/authentication/jwt-token.interf
 import { BehaviorSubject } from 'rxjs';
 import { ThemeService } from 'src/app/core/config/theme/theme.service';
 import { MatDialog } from '@angular/material/dialog';
-import { CreatePostComponent } from 'src/app/ui-elements/create-post/create-post.component';
 import { IPost } from 'src/app/core/entities/posts/post.interface';
 import { take } from 'rxjs/operators';
 import { postModalConfig } from 'src/app/core/config/constants/modals-config';
-import { ChangeAvatarComponent } from 'src/app/ui-elements/change-avatar/change-avatar.component';
+import { ChangeAvatarComponent } from '../change-avatar/change-avatar.component';
+import { CreatePostComponent } from 'src/app/social-app/create-post/create-post.component';
 
 @Component({
   selector: 'app-user-header',

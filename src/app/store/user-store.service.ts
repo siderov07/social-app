@@ -11,14 +11,14 @@ export class UserStoreService {
   public readonly loggedUser$: Observable<IJwtToken | IUser> = this.loggedUser.asObservable();
 
   constructor() {
-    const user: IUser | IJwtToken = JSON.parse(sessionStorage.getItem(SStorage.User));
+    const currentUser: IUser | IJwtToken | null = JSON.parse(sessionStorage.getItem(SStorage.User));
 
-    if (user) {
-      this.loggedUser.next(user);
+    if (currentUser) {
+      this.loggedUser.next(currentUser);
     }
   }
 
-  setUser(user: IUser | IJwtToken): void {
+  setUser(user: IUser | IJwtToken | null): void {
     sessionStorage.setItem(SStorage.User, JSON.stringify(user));
     this.loggedUser.next(user);
   }

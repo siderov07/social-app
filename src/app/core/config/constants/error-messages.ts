@@ -3,5 +3,6 @@ export enum ErrorMessages {
   RequiredField = 'The field is required',
   InvalidField = 'Invalid field',
   MissmatchPasswords = 'The passwords do not match',
-  PasswordCharset = 'The password must contain at least one uppercase, lowercase and number'
+  PasswordCharset = 'The password must contain at least one uppercase, lowercase and number',
+  UnknownError = 'Something went wrong. Please try again.'
 }

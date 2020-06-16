@@ -1,0 +1,20 @@
+.confirm-dialog {
+  padding: 25px;
+  position: relative;
+
+  &__close {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+  }
+
+  &__body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+    .button {
+      margin: 5px;
+    }
+  }
+}

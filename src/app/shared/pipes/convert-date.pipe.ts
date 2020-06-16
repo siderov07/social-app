@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ConvertDatePipe implements PipeTransform {
 
-  transform(value: number): unknown {
+  transform(value: number): number {
     return value * 1000;
   }
 }

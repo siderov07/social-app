@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostPageComponent } from './containers/post-page/post-page.component';
 import { PostRoutingModule } from './post.module.routing';
-import { UiElementsModule } from 'src/app/ui-elements/ui-elements.module';
+import { SocialAppModule } from 'src/app/social-app/social-app.module';
 
 
 @NgModule({
@@ -10,7 +10,7 @@ import { UiElementsModule } from 'src/app/ui-elements/ui-elements.module';
   imports: [
     CommonModule,
     PostRoutingModule,
-    UiElementsModule
+    SocialAppModule
   ]
 })
 export class PostModule { }

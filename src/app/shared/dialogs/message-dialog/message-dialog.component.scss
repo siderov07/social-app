@@ -1,0 +1,13 @@
+.message-dialog {
+    position: relative;
+    
+    &__close {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+    }
+
+    &__message {
+        padding: 20px;
+    }
+}

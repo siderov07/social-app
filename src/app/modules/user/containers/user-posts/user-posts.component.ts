@@ -5,32 +5,33 @@ import { IPost } from 'src/app/core/entities/posts/post.interface';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 import { getInfinityScroll } from 'src/app/shared/infinity-scroll';
-import { tap, switchMap, map } from 'rxjs/operators';
+import { tap, map, concatMap } from 'rxjs/operators';
+import { RouterParams } from 'src/app/core/config/constants/routing';
 
 @Component({
-  selector: 'app-user-posts',
+  // tslint:disable-next-line: component-selector
+  selector: '',
   templateUrl: './user-posts.component.html',
   styleUrls: ['./user-posts.component.scss']
 })
 export class UserPostsComponent implements OnInit {
 
-  loadMore = true;
-  incrementPostsValue = 2;
   takeFrom = 0;
-  isFollowed: boolean;
+  loadMore = true;
+  incrementPostsValue = 3;
+
   currentUser: IUser;
-  infinityScroll$: Observable<IPost>;
+  isFollowed: boolean;
   postsList: Array<IPost>;
 
-  constructor(
-    private route: ActivatedRoute,
-    private userService: UserService
-  ) { }
+  infinityScroll$: Observable<IPost>;
+
+  constructor( private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit(): void {
 
     this.route.paramMap.subscribe(params => {
-      const userId = +params.get('userId');
+      const userId = +params.get(RouterParams.UserId);
 
       this.userService.getUserById(userId).subscribe((user: IUser) => {
         this.currentUser = user;
@@ -48,6 +49,7 @@ export class UserPostsComponent implements OnInit {
     this.userService.getUserPosts(this.currentUser.id, this.incrementPostsValue, this.takeFrom)
       .subscribe((posts: Array<IPost>) => {
         this.postsList = posts;
+        this.loadMore = this.postsList.length >= this.incrementPostsValue ? true : false;
         this.handleInfinityScroll();
       });
   }
@@ -66,7 +68,7 @@ export class UserPostsComponent implements OnInit {
   handleInfinityScroll(): void {
     this.infinityScroll$ = getInfinityScroll.apply(this).pipe(
       tap(() => this.takeFrom += this.incrementPostsValue),
-      switchMap(() => this.userService.getUserPosts(this.currentUser.id, this.incrementPostsValue, this.takeFrom)),
+      concatMap(() => this.userService.getUserPosts(this.currentUser.id, this.incrementPostsValue, this.takeFrom)),
       tap((data: Array<IPost | null>) => this.loadMore = data.length > 0 ? true : false),
       map((data: Array<IPost | null>) => this.postsList = data ? this.postsList.concat(data) : this.postsList));
   }

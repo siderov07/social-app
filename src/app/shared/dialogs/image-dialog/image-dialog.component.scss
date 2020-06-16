@@ -1,0 +1,13 @@
+.image-dialog {
+  position: relative;
+
+  &__close {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+  
+  &__image {
+    padding: 5px;
+  }
+}

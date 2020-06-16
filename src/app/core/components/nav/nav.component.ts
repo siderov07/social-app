@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../authentication/authentication.service';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ThemeService } from 'src/app/core/config/theme/theme.service';
 import { UserStoreService } from 'src/app/store/user-store.service';
 import { NotificationsService } from '../../services/notifications.service';
 import { INotification } from '../../entities/notifications/notification.interface';
-import { take } from 'rxjs/operators';
 import { IUser } from '../../entities/user/user.interface';
 import { IJwtToken } from '../../entities/authentication/jwt-token.interface';
 
@@ -22,6 +21,7 @@ export class NavComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
+    private user: UserStoreService,
     private userStore: UserStoreService,
     private themeService: ThemeService,
     private notificationService: NotificationsService ) {}
@@ -34,8 +34,8 @@ export class NavComponent implements OnInit {
 
   // Gets the initial notifications
   initNotifications(): void {
-    this.authService.token$.subscribe((token: string) => {
-      this.isUserLogged = !!token;
+    this.user.loggedUser$.subscribe((loggedUser: IUser | IJwtToken) => {
+      this.isUserLogged = !!loggedUser;
       if (this.isUserLogged) {
         this.notificationService.getNotifications()
           .subscribe((notifications: Array<INotification>) => this.notificationsList = notifications );

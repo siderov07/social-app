@@ -6,7 +6,8 @@ import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-user-search',
+  // tslint:disable-next-line: component-selector
+  selector: '',
   templateUrl: './user-search.component.html',
   styleUrls: ['./user-search.component.scss']
 })
@@ -19,13 +20,13 @@ export class UserSearchComponent implements OnInit, OnDestroy {
   constructor(private userService: UserService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.router$ = this.router.queryParams.subscribe(queryParams => {
+    this.router$ = this.router.queryParams.subscribe((queryParams: {search: string}) => {
       this.searchValue = queryParams.search;
       this.userService.getUsers().pipe(
         // Makes the search case insensitive
         map((data) => data.filter((x) => x.username.toLowerCase().includes(this.searchValue.toLowerCase())))
       )
-      .subscribe(userData => {
+      .subscribe((userData: Array<IUser>) => {
         this.usersList = userData;
       });
     });

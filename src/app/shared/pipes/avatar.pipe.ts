@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class AvatarPipe implements PipeTransform {
 
-  transform(avatar: string): unknown {
+  transform(avatar: string): string {
     return avatar === 'default_avatar' ? '../../../assets/icons/default-avatar.png' : avatar;
   }
 }

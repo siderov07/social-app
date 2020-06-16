@@ -1,9 +1,0 @@
-<div class="posts-container">
-  <ul class="posts-list">
-    <li class="posts-list__item" *ngFor="let post of postsList" >
-      <app-post-card [post]="post" (postDeletionEvent)="onPostDeletion($event)"></app-post-card>
-    </li>
-  </ul>
-</div>
-<ng-template *ngIf="infinityScroll$ | async"></ng-template>
-<app-scroll-to-top></app-scroll-to-top>

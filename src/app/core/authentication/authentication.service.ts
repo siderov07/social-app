@@ -16,7 +16,6 @@ import { UserStoreService } from 'src/app/store/user-store.service';
 export class AuthenticationService {
 
   public loginFail: EventEmitter<boolean> = new EventEmitter();
-  readonly token$: BehaviorSubject<string> = new BehaviorSubject(this.getToken(false) as string);
 
   constructor(
     private http: HttpClient,
@@ -31,7 +30,6 @@ export class AuthenticationService {
       tap(success => {
         sessionStorage.setItem(SStorage.Token, success.token);
         this.themeService.initializeTheme(true);
-        this.token$.next(success.token);
         this.userStore.setUser(this.getToken(true) as IJwtToken);
       }),
     );
@@ -47,9 +45,9 @@ export class AuthenticationService {
     localStorage.setItem(LStorage.LastUser, user);
     localStorage.setItem(LStorage.LastUserTheme, this.themeService.getActiveTheme().name);
     sessionStorage.removeItem(SStorage.Token);
+
     this.themeService.initializeTheme(false);
     this.userStore.setUser(null);
-    this.token$.next(null);
     this.router.navigateByUrl('/');
   }
 

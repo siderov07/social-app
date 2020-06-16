@@ -1,4 +1,4 @@
-export function validateImage(image: File) {
+export function validateImage(image: File): string | null {
   let error: string = null;
 
   if (image.type !== 'image/jpeg') {

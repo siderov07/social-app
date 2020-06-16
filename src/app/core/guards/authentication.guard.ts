@@ -13,8 +13,7 @@ export class AuthenticationGuard implements CanActivate {
   constructor(
     private router: Router,
     private authService: AuthenticationService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog ) {}
 
   canActivate(): boolean {
     if (this.authService.getToken(true)) {

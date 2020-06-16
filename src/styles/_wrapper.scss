@@ -3,8 +3,13 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  color: var(--font-color-primary);
 
   &__item {
     max-width: 100%;
+  }
+
+  .loading-spinner {
+    margin-top: -10px;
   }
 }

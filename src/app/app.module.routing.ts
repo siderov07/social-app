@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: AppRoutes.Home,
-    loadChildren: () => import('./modules/landing/landing.module').then(m => m.LandingModule)
+    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
   },
   {
     path: AppRoutes.Post,
@@ -28,12 +28,13 @@ const routes: Routes = [
     loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule)
   },
   {
-    path: 'user-search',
+    path: AppRoutes.UserSearch,
     loadChildren: () => import('./modules/user-search/user-search.module').then(m => m.UserSearchModule)
   },
   {
-    path: 'design',
-    loadChildren: () => import('./design/design.module').then(m => m.DesignModule)
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: AppRoutes.Home
   },
 ];
 

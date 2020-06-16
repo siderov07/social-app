@@ -7,7 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from './authentication/authentication.service';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { ThemeService } from './config/theme/theme.service';
-import { UiElementsModule } from '../ui-elements/ui-elements.module';
 import { TokenInterceptor } from './http-interceptors/token.interceptor';
 import { EndpointInterceptor } from './http-interceptors/api-endpoint.interceptor';
 import { UserService } from './services/user.service';
@@ -18,14 +17,25 @@ import { UserStoreService } from '../store/user-store.service';
 import { ProfilePermissionGuard } from './guards/profile-permission.guard';
 import { NotificationsService } from './services/notifications.service';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
-import { environment } from 'src/environments/environment';
+import { ApiRoutes } from './config/api/api-routes';
+import { NavUserProfileComponent } from './components/nav-user-profile/nav-user-profile.component';
+import { SocialAppModule } from '../social-app/social-app.module';
+import { SharedModule } from '../shared/shared.module';
+import { ClickOutsideModule } from 'ng-click-outside';
 
-const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
-
+const config: SocketIoConfig = { url: ApiRoutes.BaseUrl, options: {} };
 
 @NgModule({
-  declarations: [NavComponent, SideNavComponent],
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, UiElementsModule, SocketIoModule.forRoot(config)],
+  declarations: [NavComponent, SideNavComponent, NavUserProfileComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+    SocialAppModule,
+    SharedModule,
+    SocketIoModule.forRoot(config),
+    ClickOutsideModule
+  ],
   exports: [NavComponent, SideNavComponent],
   providers: [
     AuthenticationService,
@@ -40,13 +50,13 @@ const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: EndpointInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
 })
 export class CoreModule {}

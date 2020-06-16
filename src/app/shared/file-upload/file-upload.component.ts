@@ -1,22 +1,25 @@
-import { Component, Output, Input, Optional, OnInit } from '@angular/core';
+import { Component, Output, Input, Optional, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { validateImage } from 'src/app/validations/image-validation';
-import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
+import { MessageDialogComponent } from '../dialogs/message-dialog/message-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { postModalConfig } from 'src/app/core/config/constants/modals-config';
-import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
+import { ImageDialogComponent } from '../dialogs/image-dialog/image-dialog.component';
 import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
-  styleUrls: ['./file-upload.component.scss']
+  styleUrls: ['./file-upload.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FileUploadComponent implements OnInit {
-  selectedFile: File = null;
-  previewUrl: string | ArrayBuffer;
 
   @Input () @Optional () fileUrl: string;
+
   @Output () emittedFile = new EventEmitter<File>();
+
+  selectedFile: File = null;
+  previewUrl: string | ArrayBuffer;
 
   constructor(private dialog: MatDialog) { }
 
@@ -32,9 +35,7 @@ export class FileUploadComponent implements OnInit {
 
   onFileChange(file: File): void {
 
-    if (!file) {
-      return;
-    }
+    if (!file) { return; }
 
     const hasErrors = validateImage(file);
 

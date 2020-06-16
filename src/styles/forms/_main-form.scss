@@ -109,3 +109,15 @@
     }
   }
 }
+
+@media only screen and (max-width: 414px) {
+  .main-form {
+    &__body {
+      .form-item {
+        &__label {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}

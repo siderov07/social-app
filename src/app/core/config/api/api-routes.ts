@@ -1,4 +1,5 @@
 export enum ApiRoutes {
+  BaseUrl = 'https://social-app.scalefocus.academy',
   Login = 'auth/login',
   Register = 'auth/register',
   Logout = 'auth/logout',
